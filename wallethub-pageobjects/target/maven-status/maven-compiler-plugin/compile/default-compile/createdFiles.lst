@@ -1,0 +1,8 @@
+com\wallethub\testinsurancepages\TestInsurancePage.class
+com\wallethub\testinsurancepages\ReviewSubmissionPage.class
+com\wallethub\testinsurancepages\WalletHubLoginPageClass.class
+com\fb\pages\HomePageClass.class
+com\fb\pages\LoginPageClass.class
+com\wallethub\testinsurancepages\ConfirmReviewPage.class
+com\base\PageBaseClass.class
+com\wallethub\testinsurancepages\ProfilePage.class
