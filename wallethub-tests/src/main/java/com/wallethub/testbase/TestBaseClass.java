@@ -51,15 +51,26 @@ public class TestBaseClass {
 			driver.manage().window().maximize();
 			break;
 		case "CHROME":
-			System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
-			ChromeOptions options = new ChromeOptions();
+			String os = System.getProperty("os.name");
+			if(os.toLowerCase().contains("mac")){
+				ChromeOptions options=new ChromeOptions();
+				options.addArguments("--disable-notifications");
+				Map prefs=new HashMap();
+				prefs.put("profile.default_content_setting_values.notifications", 1);
+				options.setExperimentalOption("prefs",prefs);
+				System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/mac/chromedriver");
+				driver=new ChromeDriver(options);
+			} else{
+				System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
+			}
+			//ChromeOptions options = new ChromeOptions();
 		      //disable notification parameter
-		     options.addArguments("--disable-notifications");
+		     //options.addArguments("--disable-notifications");
 		      // configure options parameter to Chrome driver
-		//      Map<String, Object> pref = new HashMap<String, Object>();
-		  //    pref.put("profile.default_content_setting_values.notifications", 2);
-		  	//	options.setExperimentalOption("pref", pref);
-			driver = new ChromeDriver(options);
+			//      Map<String, Object> pref = new HashMap<String, Object>();
+			  //    pref.put("profile.default_content_setting_values.notifications", 2);
+				//	options.setExperimentalOption("pref", pref);
+				//driver = new ChromeDriver(options);
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
 			break;

@@ -17,12 +17,7 @@ public class HomePageClass extends PageBaseClass {
 
 	public HomePageClass(WebDriver driver) {
 		super(driver);
-		wait.until(ExpectedConditions.elementToBeClickable(home));
-		if(home.isEnabled())
-		{
-			System.out.println("login success");
-		}
-
+		waitFor(driver, 30, home);
 	}
 	
 	WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -41,9 +36,9 @@ public class HomePageClass extends PageBaseClass {
 
 	String parent  = driver.getWindowHandle();
 		
-	public void homePagebutton() {
+	public void clickHomePagebutton() {
 		click(home);
-		}
+	}
 	
 	public void createPostWindow(String comment)
 	{
