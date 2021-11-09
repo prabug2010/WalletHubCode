@@ -9,8 +9,7 @@ import com.base.PageBaseClass;
 public class LoginPageClass extends PageBaseClass {
 
 	public LoginPageClass(WebDriver driver) {
-		super(driver);
-		waitFor(driver, 30, userId);
+				super(driver);
 	}
 
 	@FindBy(id = "email")
@@ -31,7 +30,7 @@ public class LoginPageClass extends PageBaseClass {
 	}
 
 	public HomePageClass signIn() {
-		click(loginbutton);
+		loginbutton.click();
 		return new HomePageClass(driver);
 	}
 

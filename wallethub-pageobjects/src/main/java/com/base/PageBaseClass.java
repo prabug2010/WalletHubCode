@@ -1,7 +1,6 @@
 package com.base;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,33 +27,29 @@ public class PageBaseClass {
 	}
 
 	public void clear(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.clear();
 	}
 
-	public void sendText(WebElement element, String text) {
-		click(element);
-		clear(element);
-		element.sendKeys(text);
-	}
-
 	public void click(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 	}
 
+	public void sendText(WebElement element, String text) {
+		element.click();
+		element.clear();
+		element.sendKeys(text);
+	}
+	
 	public void mouseHover(WebElement element)
 	{
 		Actions action = new Actions(driver);
-		action.moveToElement(element).perform();
+	action.moveToElement(element).perform();
 	}
 	
 	public void hoverAndClick(WebElement element)
 	{
 		Actions action = new Actions(driver);
-		action.moveToElement(element).click().build().perform();
+	action.moveToElement(element).click().build().perform();	
 	}
 
 	public void switchFrame(WebElement ele)
@@ -73,18 +68,7 @@ public class PageBaseClass {
 	
 	public void scrollingDown(WebElement element)
 	{
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		js.executeScript("window.scrollBy(0,750)","");
-	}
-
-	public void waitFor(WebDriver driver, int timeOut, WebElement element){
-		WebDriverWait wait = new WebDriverWait(driver,timeOut);
-		wait.until(ExpectedConditions.visibilityOf (element));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
 }

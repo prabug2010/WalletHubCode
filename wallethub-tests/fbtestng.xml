@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<parameter name = "url" value = "http://www.facebook.com"/>
+<parameter name = "username" value = "9677333397"/>
+<parameter name = "password" value = "Kalkin@2018"/>
+<parameter name = "comment" value = "Hello World"/>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.wallethub.fbtest.TestClassFB"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

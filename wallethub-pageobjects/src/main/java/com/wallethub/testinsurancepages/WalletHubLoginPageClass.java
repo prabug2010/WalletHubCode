@@ -12,7 +12,12 @@ public class WalletHubLoginPageClass extends PageBaseClass {
 
 	public WalletHubLoginPageClass(WebDriver driver) {
 		super(driver);
-		waitFor(driver, 30, loginBtn);
+		wait = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
+		if(loginBtn.isEnabled())
+		{
+			System.out.println("landed to login page");
+		}
 	}
 	
 	@FindBy(css = "#join-login > form > div.btns > button.btn.blue.center.reg-tabs-bt.touch-element-cl > span")
@@ -29,20 +34,19 @@ public class WalletHubLoginPageClass extends PageBaseClass {
 	
 	public TestInsurancePage login()
 	{
-		click(loginBtn);
+		rememberBtn.click();
+		loginBtn.click();
 		return new TestInsurancePage(driver);
 	}
 	
 	public void enterUserName(String username)
 	{
 		sendText(mail, username);
-		System.out.println("Entered the username");
 	}
 	
 	public void enterPassword(String password)
 	{
 		sendText(pwd, password);
-		System.out.println("Entered the password");
 	}
 	
 	

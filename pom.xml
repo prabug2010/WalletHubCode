@@ -2,30 +2,35 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-  <groupId>wallethub</groupId>
-  <artifactId>wallethub-base</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>wallethub-base</name>
-  <url>http://maven.apache.org</url>
-  <description>wallethub-base</description>
+	<groupId>wallethub</groupId>
+	<artifactId>wallethub-base</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>wallethub-base</name>
+	<url>http://maven.apache.org</url>
+	<description>wallethub-base</description>
 	<packaging>pom</packaging>
-  
-   <properties>
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-    </properties>
-    
-    <modules>
-    <module>wallethub-pageobjects</module>
-    <module>wallethub-tests</module>
-    </modules>
-    
-    <dependencies>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+	<modules>
+		<module>wallethub-pageobjects</module>
+		<module>wallethub-tests</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.15</version>
+			<version>4.1.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>

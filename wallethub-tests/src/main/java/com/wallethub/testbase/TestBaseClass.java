@@ -7,11 +7,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
+import java.io.File;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.DataProvider;
 
 public class TestBaseClass {
 
@@ -21,7 +27,7 @@ public class TestBaseClass {
 	public TestBaseClass() {
 		browserInitialization();
 	}
-
+		
 	public void browserInitialization() {
 		FileInputStream fis;
 		try {
@@ -46,31 +52,25 @@ public class TestBaseClass {
 		String browserType = testConfig.get("browser") != null ? testConfig.get("browser").toUpperCase() : "CHROME";
 		switch (browserType) {
 		case "FIREFOX":
+			FirefoxProfile newProfile = new FirefoxProfile();
+			newProfile.setPreference("dom.webnotifications.enabled", false);
+			DesiredCapabilities desCap = DesiredCapabilities.firefox();
+			desCap.setCapability(FirefoxDriver.PROFILE, newProfile);
+			FirefoxOptions opt = new FirefoxOptions();
 			System.setProperty("webdriver.gecko.driver", "./src/test/resources/drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
 			driver.manage().window().maximize();
 			break;
 		case "CHROME":
-			String os = System.getProperty("os.name");
-			if(os.toLowerCase().contains("mac")){
-				ChromeOptions options=new ChromeOptions();
-				options.addArguments("--disable-notifications");
-				Map prefs=new HashMap();
-				prefs.put("profile.default_content_setting_values.notifications", 1);
-				options.setExperimentalOption("prefs",prefs);
-				System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/mac/chromedriver");
-				driver=new ChromeDriver(options);
-			} else{
-				System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
-			}
-			//ChromeOptions options = new ChromeOptions();
+			System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
+			ChromeOptions options = new ChromeOptions();
 		      //disable notification parameter
-		     //options.addArguments("--disable-notifications");
+		     options.addArguments("--disable-notifications");
 		      // configure options parameter to Chrome driver
-			//      Map<String, Object> pref = new HashMap<String, Object>();
-			  //    pref.put("profile.default_content_setting_values.notifications", 2);
-				//	options.setExperimentalOption("pref", pref);
-				//driver = new ChromeDriver(options);
+		//      Map<String, Object> pref = new HashMap<String, Object>();
+		  //    pref.put("profile.default_content_setting_values.notifications", 2);
+		  	//	options.setExperimentalOption("pref", pref);
+			driver = new ChromeDriver(options);
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
 			break;

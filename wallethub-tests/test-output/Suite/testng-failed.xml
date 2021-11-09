@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite parallel="none" name="Failed suite [Suite]">
+  <parameter name="password" value="Kalkin@2018"/>
+  <parameter name="comment" value="WalletHub is the first-ever website to offer free credit scores and full credit reports that are updated on a daily basis and is a leading personal finance website that helps consumers make smarter financial decisions."/>
+  <parameter name="url" value="https://wallethub.com/profile/test-insurance-company-13732055i"/>
+  <parameter name="username" value="gprabumail@yahoo.com"/>
   <test parallel="none" name="Test(failed)">
     <classes>
       <class name="com.wallethub.fbtest.TestClassWalletHub">
         <methods>
-          <include name="postReview"/>
+          <include name="postReview" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.wallethub.fbtest.TestClassWalletHub -->
     </classes>

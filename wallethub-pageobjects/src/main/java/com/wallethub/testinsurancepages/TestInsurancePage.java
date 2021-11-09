@@ -10,34 +10,28 @@ public class TestInsurancePage extends PageBaseClass{
 
 	public TestInsurancePage(WebDriver driver) {
 		super(driver);
-		waitFor(driver, 30, pageLocator);
 	}
 
-	@FindBy(css = "h1.profile-name")
-	public WebElement pageLocator;
-
-	@FindBy(css = "#reviews-section > div.review-stat-box > div.rv.review-action.ng-enter-element > review-star > div > svg:nth-child(7)")
+	@FindBy(css = "svg.rvs-star-svg:nth-child(7)")
 	public WebElement stars;
-
+	
 	@FindBy(css = "#web-app > header > div > nav.burger-menu-right-menu.brgm-guest-user > span")
 	public WebElement loginMenu;
 	
 	@FindBy(css = "#web-app > header > div > nav.burger-menu-right-menu > div.brgm-button.brgm-user.brgm-list-box > span")
 	public WebElement profile;
 		
-	public WalletHubLoginPageClass clickLogin()
+	public WalletHubLoginPageClass loginAccount()
 	{
-		click(loginMenu);
+		loginMenu.click();	
 		return new WalletHubLoginPageClass(driver);
 	}
 	
 	public ReviewSubmissionPage rating()
 	{
 		scrollingDown(stars);
-		System.out.println("scrolling process done !!!");
-		//mouseHover(stars);
+		mouseHover(stars);
 		click(stars);
-		System.out.println("stars given !!!");
 		return new ReviewSubmissionPage(driver);
 	}
 	
