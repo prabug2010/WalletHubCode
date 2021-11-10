@@ -1,4 +1,8 @@
+package com.wallethub.testbase;
+
 import java.io.File;
+import java.io.FileInputStream;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -7,7 +11,7 @@ public class ExcelLibrary {
 		XSSFWorkbook workbook;
 		XSSFSheet sheet;
 
-		public libraryCode(String excelpath)
+		public ExcelLibrary(String excelpath)
 			{
 				try
 				{
